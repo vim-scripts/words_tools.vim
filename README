@@ -1,0 +1,18 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=143
+
+A tip would have been more accurate regarding what I am presenting here. But as some functions proposed are needed by another script of mine, here is a script file containing the definitions of three functions that can be used instead of expand("<cword>").
+
+expand("<cword>") is a nice feature in VIM, but it is not very helpful when we have to deal with automatic completion -- you know : when you hit <tab> within VIM's command line or your favourite shell. Indeed, "<cword>" refers to the word under/after the cursor, while we need the word under/before the cursor.
+
+So, here is three functions :
+* GetPreviousWord() that returns the word preceding the cursor ; the word is either truncated at the cursor's position or completed by as many spaces as needed to reach this position. I call a word, a sequence of keyword characters ('\k', see :h isk).
+  It is handy, in C programming, to test what precedes the cursor when we hit '(', and then expand C control-structures (for, if, else, elif, switch, etc.) to anything desired.
+
+* GetCurrentWord() returns the word which is either stricly under the cursor or just before -- if the cursor is preceded by a space, an empty string is returned. Here, a word is a sequence of non white space characters : '\S' -- in order to expand regular expressions. 
+  Cf. http://vim.sourceforge.net/scripts/script.php?script_id=46 v2.2
+
+* GetNearestWord() returns the word ('\S') either under, just before or just after the cursor.
+
+You can take a look at a table showing the different returned values by this functions in equivalent contexts : http://hermitte.free.fr/vim/general.php3#expl_words_tools
+
+As I said before, a tip would have been more appropriate. These functions are just examples of want could be done on this topic. They fulfill some specific needs I had. 
